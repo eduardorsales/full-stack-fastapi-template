@@ -42,8 +42,8 @@ function RecoverPassword() {
       email: data.email,
     })
     showToast(
-      "Email sent.",
-      "We sent an email with a link to get back into your account.",
+      "E-mail enviado.",
+      "Nós enviamos um e-mail com um link para recuperar sua conta.",
       "success",
     )
   }
@@ -60,10 +60,10 @@ function RecoverPassword() {
       centerContent
     >
       <Heading size="xl" color="ui.main" textAlign="center" mb={2}>
-        Password Recovery
+        Recuperação de Senha
       </Heading>
       <Text align="center">
-        A password recovery email will be sent to the registered account.
+        Um e-mail de recuperação de senha será enviado para e-mail registrado.
       </Text>
       <FormControl isInvalid={!!errors.email}>
         <Input
@@ -72,10 +72,10 @@ function RecoverPassword() {
             required: "Email is required",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-              message: "Invalid email address",
+              message: "Endereço de e-mail inválido",
             },
           })}
-          placeholder="Email"
+          placeholder="Ex.: seuemail@email.com"
           type="email"
         />
         {errors.email && (

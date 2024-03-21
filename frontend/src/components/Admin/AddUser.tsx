@@ -59,7 +59,7 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
 
   const mutation = useMutation(addUser, {
     onSuccess: () => {
-      showToast("Success!", "User created successfully.", "success")
+      showToast("Sucesso!", "Usuário criado com sucesso.", "success")
       reset()
       onClose()
     },
@@ -86,21 +86,21 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
       >
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader>Add User</ModalHeader>
+          <ModalHeader>Adicionar Usuário</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isRequired isInvalid={!!errors.email}>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email">E-mail</FormLabel>
               <Input
                 id="email"
                 {...register("email", {
-                  required: "Email is required",
+                  required: "E-mail é obrigatório",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Invalid email address",
+                    message: "Endereço de e-mail inválido",
                   },
                 })}
-                placeholder="Email"
+                placeholder="Ex.: seuemail@email.com"
                 type="email"
               />
               {errors.email && (
@@ -108,11 +108,11 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
               )}
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.full_name}>
-              <FormLabel htmlFor="name">Full name</FormLabel>
+              <FormLabel htmlFor="name">Nome completo</FormLabel>
               <Input
                 id="name"
                 {...register("full_name")}
-                placeholder="Full name"
+                placeholder="Ex.: João da Silva"
                 type="text"
               />
               {errors.full_name && (
@@ -120,17 +120,17 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
               )}
             </FormControl>
             <FormControl mt={4} isRequired isInvalid={!!errors.password}>
-              <FormLabel htmlFor="password">Set Password</FormLabel>
+              <FormLabel htmlFor="password">Senha</FormLabel>
               <Input
                 id="password"
                 {...register("password", {
-                  required: "Password is required",
+                  required: "Senha é obrigatória",
                   minLength: {
                     value: 8,
-                    message: "Password must be at least 8 characters",
+                    message: "A senha deve conter oito caracteres",
                   },
                 })}
-                placeholder="Password"
+                placeholder="********"
                 type="password"
               />
               {errors.password && (
@@ -142,16 +142,16 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
               isRequired
               isInvalid={!!errors.confirm_password}
             >
-              <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
+              <FormLabel htmlFor="confirm_password">Confirme a senha</FormLabel>
               <Input
                 id="confirm_password"
                 {...register("confirm_password", {
-                  required: "Please confirm your password",
+                  required: "Por favor, confirme sua senha",
                   validate: (value) =>
                     value === getValues().password ||
-                    "The passwords do not match",
+                    "As senhas digitadas não correspondem ou não são iguais",
                 })}
-                placeholder="Password"
+                placeholder="********"
                 type="password"
               />
               {errors.confirm_password && (
@@ -163,21 +163,21 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
             <Flex mt={4}>
               <FormControl>
                 <Checkbox {...register("is_superuser")} colorScheme="teal">
-                  Is superuser?
+                  É superusuário?
                 </Checkbox>
               </FormControl>
               <FormControl>
                 <Checkbox {...register("is_active")} colorScheme="teal">
-                  Is active?
+                  É ativo?
                 </Checkbox>
               </FormControl>
             </Flex>
           </ModalBody>
           <ModalFooter gap={3}>
             <Button variant="primary" type="submit" isLoading={isSubmitting}>
-              Save
+              Salvar
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cancelar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

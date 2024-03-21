@@ -56,15 +56,15 @@ function Admin() {
               textAlign={{ base: "center", md: "left" }}
               pt={12}
             >
-              User Management
+              Gerenciamento de Usuário
             </Heading>
             <Navbar type={"User"} />
             <TableContainer>
               <Table fontSize="md" size={{ base: "sm", md: "md" }}>
                 <Thead>
                   <Tr>
-                    <Th>Full name</Th>
-                    <Th>Email</Th>
+                    <Th>Nome completo</Th>
+                    <Th>E-mail</Th>
                     <Th>Role</Th>
                     <Th>Status</Th>
                     <Th>Actions</Th>

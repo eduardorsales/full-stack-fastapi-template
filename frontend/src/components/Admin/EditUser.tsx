@@ -58,12 +58,12 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
 
   const mutation = useMutation(updateUser, {
     onSuccess: () => {
-      showToast("Success!", "User updated successfully.", "success")
+      showToast("Sucesso!", "Usuário atualizado com sucesso.", "success")
       onClose()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Algo deu errado.", `${errDetail}`, "error")
     },
     onSettled: () => {
       queryClient.invalidateQueries("users")
@@ -92,18 +92,18 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
       >
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader>Edit User</ModalHeader>
+          <ModalHeader>Editar Usuário</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isInvalid={!!errors.email}>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email">E-mail</FormLabel>
               <Input
                 id="email"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Invalid email address",
+                    message: "Endereço de e-mail inválido",
                   },
                 })}
                 placeholder="Email"
@@ -114,20 +114,20 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
               )}
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel htmlFor="name">Full name</FormLabel>
+              <FormLabel htmlFor="name">Nome Completo</FormLabel>
               <Input id="name" {...register("full_name")} type="text" />
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.password}>
-              <FormLabel htmlFor="password">Set Password</FormLabel>
+              <FormLabel htmlFor="password">Senha</FormLabel>
               <Input
                 id="password"
                 {...register("password", {
                   minLength: {
                     value: 8,
-                    message: "Password must be at least 8 characters",
+                    message: "A senha deve conter 8 caracteres",
                   },
                 })}
-                placeholder="Password"
+                placeholder="********"
                 type="password"
               />
               {errors.password && (
@@ -135,7 +135,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
               )}
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.confirm_password}>
-              <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
+              <FormLabel htmlFor="confirm_password">Confirme a senha</FormLabel>
               <Input
                 id="confirm_password"
                 {...register("confirm_password", {
@@ -155,12 +155,12 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
             <Flex>
               <FormControl mt={4}>
                 <Checkbox {...register("is_superuser")} colorScheme="teal">
-                  Is superuser?
+                  É superusuário?
                 </Checkbox>
               </FormControl>
               <FormControl mt={4}>
                 <Checkbox {...register("is_active")} colorScheme="teal">
-                  Is active?
+                  É ativo?
                 </Checkbox>
               </FormControl>
             </Flex>
@@ -173,9 +173,9 @@ const EditUser: React.FC<EditUserProps> = ({ user, isOpen, onClose }) => {
               isLoading={isSubmitting}
               isDisabled={!isDirty}
             >
-              Save
+              Salvar
             </Button>
-            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={onCancel}>Cancelar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

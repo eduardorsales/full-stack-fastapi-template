@@ -16,14 +16,14 @@ const DeleteAccount: React.FC = () => {
     <>
       <Container maxW="full">
         <Heading size="sm" py={4}>
-          Delete Account
+          Deletar Conta
         </Heading>
         <Text>
-          Permanently delete your data and everything associated with your
-          account.
+          Exclua permanentemente seus dados e tudo associado ao seu
+          conta.
         </Text>
         <Button variant="danger" mt={4} onClick={confirmationModal.onOpen}>
-          Delete
+          Deletar
         </Button>
         <DeleteConfirmation
           isOpen={confirmationModal.isOpen}

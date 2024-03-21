@@ -6,7 +6,6 @@ import {
   FormControl,
   FormErrorMessage,
   Icon,
-  Image,
   Input,
   InputGroup,
   InputRightElement,
@@ -21,7 +20,6 @@ import {
 import React from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 
-import Logo from "../assets/images/fastapi-logo.svg"
 import type { ApiError } from "../client"
 import type { Body_login_login_access_token as AccessToken } from "../client/models/Body_login_login_access_token"
 import useAuth, { isLoggedIn } from "../hooks/useAuth"
@@ -75,24 +73,17 @@ function Login() {
         gap={4}
         centerContent
       >
-        <Image
-          src={Logo}
-          alt="FastAPI logo"
-          height="auto"
-          maxW="2xs"
-          alignSelf="center"
-          mb={4}
-        />
+
         <FormControl id="username" isInvalid={!!errors.username || !!error}>
           <Input
             id="username"
             {...register("username", {
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Invalid email address",
+                message: "Endereço de e-mail inválido",
               },
             })}
-            placeholder="Email"
+            placeholder="Ex.: seuemail@email.com"
             type="email"
           />
           {errors.username && (
@@ -104,7 +95,7 @@ function Login() {
             <Input
               {...register("password")}
               type={show ? "text" : "password"}
-              placeholder="Password"
+              placeholder="********"
             />
             <InputRightElement
               color="gray.400"
@@ -124,11 +115,11 @@ function Login() {
         </FormControl>
         <Center>
           <Link as={RouterLink} to="/recover-password" color="blue.500">
-            Forgot password?
+            Esqueci a senha
           </Link>
         </Center>
         <Button variant="primary" type="submit" isLoading={isSubmitting}>
-          Log In
+          Entrar
         </Button>
       </Container>
     </>

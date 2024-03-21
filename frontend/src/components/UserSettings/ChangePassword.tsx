@@ -40,12 +40,12 @@ const ChangePassword: React.FC = () => {
 
   const mutation = useMutation(UpdatePassword, {
     onSuccess: () => {
-      showToast("Success!", "Password updated.", "success")
+      showToast("Sucesso!", "Senha atualizada.", "success")
       reset()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Algo deu errado.", `${errDetail}`, "error")
     },
   })
 
@@ -57,17 +57,17 @@ const ChangePassword: React.FC = () => {
     <>
       <Container maxW="full" as="form" onSubmit={handleSubmit(onSubmit)}>
         <Heading size="sm" py={4}>
-          Change Password
+          Alterar Senha
         </Heading>
         <Box w={{ sm: "full", md: "50%" }}>
           <FormControl isRequired isInvalid={!!errors.current_password}>
             <FormLabel color={color} htmlFor="current_password">
-              Current password
+              Senha atual
             </FormLabel>
             <Input
               id="current_password"
               {...register("current_password")}
-              placeholder="Password"
+              placeholder="********"
               type="password"
             />
             {errors.current_password && (
@@ -77,17 +77,17 @@ const ChangePassword: React.FC = () => {
             )}
           </FormControl>
           <FormControl mt={4} isRequired isInvalid={!!errors.new_password}>
-            <FormLabel htmlFor="password">Set Password</FormLabel>
+            <FormLabel htmlFor="password">Nova senha</FormLabel>
             <Input
               id="password"
               {...register("new_password", {
-                required: "Password is required",
+                required: "Senha é obrigatória",
                 minLength: {
                   value: 8,
-                  message: "Password must be at least 8 characters",
+                  message: "A senha deve conter oito caracteres",
                 },
               })}
-              placeholder="Password"
+              placeholder="********"
               type="password"
             />
             {errors.new_password && (
@@ -95,16 +95,16 @@ const ChangePassword: React.FC = () => {
             )}
           </FormControl>
           <FormControl mt={4} isRequired isInvalid={!!errors.confirm_password}>
-            <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
+            <FormLabel htmlFor="confirm_password">Confirme a senha</FormLabel>
             <Input
               id="confirm_password"
               {...register("confirm_password", {
-                required: "Please confirm your password",
+                required: "Por favor, confirme sua senha",
                 validate: (value) =>
                   value === getValues().new_password ||
-                  "The passwords do not match",
+                  "As senhas digitadas não correspondem ou não são iguais",
               })}
-              placeholder="Password"
+              placeholder="********"
               type="password"
             />
             {errors.confirm_password && (
@@ -119,7 +119,7 @@ const ChangePassword: React.FC = () => {
             type="submit"
             isLoading={isSubmitting}
           >
-            Save
+            Salvar
           </Button>
         </Box>
       </Container>

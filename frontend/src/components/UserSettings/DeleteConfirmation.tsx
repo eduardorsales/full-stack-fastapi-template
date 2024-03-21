@@ -38,8 +38,8 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
   const mutation = useMutation(deleteCurrentUser, {
     onSuccess: () => {
       showToast(
-        "Success",
-        "Your account has been successfully deleted.",
+        "Sucesso",
+        "Sua conta foi deletada com sucesso.",
         "success",
       )
       logout()
@@ -47,7 +47,7 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Algo deu errado.", `${errDetail}`, "error")
     },
     onSettled: () => {
       queryClient.invalidateQueries("currentUser")
@@ -69,25 +69,25 @@ const DeleteConfirmation: React.FC<DeleteProps> = ({ isOpen, onClose }) => {
       >
         <AlertDialogOverlay>
           <AlertDialogContent as="form" onSubmit={handleSubmit(onSubmit)}>
-            <AlertDialogHeader>Confirmation Required</AlertDialogHeader>
+            <AlertDialogHeader>Confirmação Obrigatória</AlertDialogHeader>
 
             <AlertDialogBody>
-              All your account data will be{" "}
-              <strong>permanently deleted.</strong> If you are sure, please
-              click <strong>"Confirm"</strong> to proceed. This action cannot be
-              undone.
+              Todos os dados da sua conta serão{" "}
+              <strong>permanentemente deletados.</strong> Se você tem certeza,
+              clique em <strong>"Confirmar"</strong> para prosseguir. Esta ação não
+              pode ser desfeita.
             </AlertDialogBody>
 
             <AlertDialogFooter gap={3}>
               <Button variant="danger" type="submit" isLoading={isSubmitting}>
-                Confirm
+                Confirmar
               </Button>
               <Button
                 ref={cancelRef}
                 onClick={onClose}
                 isDisabled={isSubmitting}
               >
-                Cancel
+                Cancelar
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

@@ -43,16 +43,16 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
   const mutation = useMutation(deleteEntity, {
     onSuccess: () => {
       showToast(
-        "Success",
-        `The ${type.toLowerCase()} was deleted successfully.`,
+        "Sucesso",
+        `O ${type.toLowerCase()} foi deletado com sucesso.`,
         "success",
       )
       onClose()
     },
     onError: () => {
       showToast(
-        "An error occurred.",
-        `An error occurred while deleting the ${type.toLowerCase()}.`,
+        "Um erro ocorreu.",
+        `Um erro ocorreu ao deletar o ${type.toLowerCase()}.`,
         "error",
       )
     },
@@ -81,23 +81,23 @@ const Delete: React.FC<DeleteProps> = ({ type, id, isOpen, onClose }) => {
             <AlertDialogBody>
               {type === "User" && (
                 <span>
-                  All items associated with this user will also be{" "}
-                  <strong>permantly deleted. </strong>
+                  Todos os itens associados a este usuário serão {" "}
+                  <strong>permanentemente deletados. </strong>
                 </span>
               )}
-              Are you sure? You will not be able to undo this action.
+              Você tem certeza? Você não conseguirá desfezar esta ação.
             </AlertDialogBody>
 
             <AlertDialogFooter gap={3}>
               <Button variant="danger" type="submit" isLoading={isSubmitting}>
-                Delete
+                Deletar
               </Button>
               <Button
                 ref={cancelRef}
                 onClick={onClose}
                 isDisabled={isSubmitting}
               >
-                Cancel
+                Cancelar
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

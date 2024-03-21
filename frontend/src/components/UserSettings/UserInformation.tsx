@@ -56,11 +56,11 @@ const UserInformation: React.FC = () => {
 
   const mutation = useMutation(updateInfo, {
     onSuccess: () => {
-      showToast("Success!", "User updated successfully.", "success")
+      showToast("Sucesso!", "Usuário atualizado com sucesso.", "success")
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Algo deu errado.", `${errDetail}`, "error")
     },
     onSettled: () => {
       queryClient.invalidateQueries("users")
@@ -81,12 +81,12 @@ const UserInformation: React.FC = () => {
     <>
       <Container maxW="full" as="form" onSubmit={handleSubmit(onSubmit)}>
         <Heading size="sm" py={4}>
-          User Information
+          Informações do Usuário
         </Heading>
         <Box w={{ sm: "full", md: "50%" }}>
           <FormControl>
             <FormLabel color={color} htmlFor="name">
-              Full name
+              Nome completo
             </FormLabel>
             {editMode ? (
               <Input
@@ -107,16 +107,16 @@ const UserInformation: React.FC = () => {
           </FormControl>
           <FormControl mt={4} isInvalid={!!errors.email}>
             <FormLabel color={color} htmlFor="email">
-              Email
+              E-mail
             </FormLabel>
             {editMode ? (
               <Input
                 id="email"
                 {...register("email", {
-                  required: "Email is required",
+                  required: "E-mail é obrigatório",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Invalid email address",
+                    message: "Endereço de e-mail inválido",
                   },
                 })}
                 type="email"
@@ -139,11 +139,11 @@ const UserInformation: React.FC = () => {
               isLoading={editMode ? isSubmitting : false}
               isDisabled={editMode ? !isDirty || !getValues("email") : false}
             >
-              {editMode ? "Save" : "Edit"}
+              {editMode ? "Salvar" : "Editar"}
             </Button>
             {editMode && (
               <Button onClick={onCancel} isDisabled={isSubmitting}>
-                Cancel
+                Cancelar
               </Button>
             )}
           </Flex>

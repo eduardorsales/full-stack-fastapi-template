@@ -58,13 +58,13 @@ function ResetPassword() {
 
   const mutation = useMutation(resetPassword, {
     onSuccess: () => {
-      showToast("Success!", "Password updated.", "success")
+      showToast("Sucesso!", "Senha atualizada.", "success")
       reset()
       navigate({ to: "/login" })
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Algo deu errado.", `${errDetail}`, "error")
     },
   })
 
@@ -84,23 +84,23 @@ function ResetPassword() {
       centerContent
     >
       <Heading size="xl" color="ui.main" textAlign="center" mb={2}>
-        Reset Password
+        Troque sua senha
       </Heading>
       <Text textAlign="center">
-        Please enter your new password and confirm it to reset your password.
+                Por favor, digite sua nova senha a confirme para resetá-la.
       </Text>
       <FormControl mt={4} isInvalid={!!errors.new_password}>
-        <FormLabel htmlFor="password">Set Password</FormLabel>
+        <FormLabel htmlFor="password">Senha</FormLabel>
         <Input
           id="password"
           {...register("new_password", {
             required: "Password is required",
             minLength: {
               value: 8,
-              message: "Password must be at least 8 characters",
+              message: "A senha deve conter 8 caracteres",
             },
           })}
-          placeholder="Password"
+          placeholder="********"
           type="password"
         />
         {errors.new_password && (
@@ -108,16 +108,16 @@ function ResetPassword() {
         )}
       </FormControl>
       <FormControl mt={4} isInvalid={!!errors.confirm_password}>
-        <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
+        <FormLabel htmlFor="confirm_password">Confirme a senha</FormLabel>
         <Input
           id="confirm_password"
           {...register("confirm_password", {
             required: "Please confirm your password",
             validate: (value) =>
               value === getValues().new_password ||
-              "The passwords do not match",
+              "As senhas digitadas não correspondem ou não são iguais",
           })}
-          placeholder="Password"
+          placeholder="********"
           type="password"
         />
         {errors.confirm_password && (
@@ -125,7 +125,7 @@ function ResetPassword() {
         )}
       </FormControl>
       <Button variant="primary" type="submit">
-        Reset Password
+        Enviar
       </Button>
     </Container>
   )

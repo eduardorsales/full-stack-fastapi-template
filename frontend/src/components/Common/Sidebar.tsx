@@ -16,7 +16,7 @@ import type React from "react"
 import { FiLogOut, FiMenu } from "react-icons/fi"
 import { useQueryClient } from "react-query"
 
-import Logo from "../../assets/images/fastapi-logo.svg"
+import Logo from "../../assets/images/PersistentLogo.png"
 import type { UserOut } from "../../client"
 import useAuth from "../../hooks/useAuth"
 import SidebarItems from "./SidebarItems"
@@ -69,7 +69,7 @@ const Sidebar: React.FC = () => {
               </Box>
               {currentUser?.email && (
                 <Text color={textColor} noOfLines={2} fontSize="sm" p={2}>
-                  Logged in as: {currentUser.email}
+                  Logado como: {currentUser.email}
                 </Text>
               )}
             </Flex>
@@ -105,7 +105,7 @@ const Sidebar: React.FC = () => {
               p={2}
               maxW="180px"
             >
-              Logged in as: {currentUser.email}
+              Logado como: {currentUser.email}
             </Text>
           )}
         </Flex>

@@ -39,7 +39,7 @@ const UserMenu: React.FC = () => {
           />
           <MenuList>
             <MenuItem icon={<FiUser fontSize="18px" />} as={Link} to="settings">
-              My profile
+              Meu Perfil
             </MenuItem>
             <MenuItem
               icon={<FiLogOut fontSize="18px" />}
@@ -47,7 +47,7 @@ const UserMenu: React.FC = () => {
               color="ui.danger"
               fontWeight="bold"
             >
-              Log out
+              Sair
             </MenuItem>
           </MenuList>
         </Menu>
