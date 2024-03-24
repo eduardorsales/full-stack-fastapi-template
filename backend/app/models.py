@@ -9,7 +9,6 @@ class UserBase(SQLModel):
     is_superuser: bool = False
     full_name: str | None = None
 
-
 # Properties to receive via API on creation
 class UserCreate(UserBase):
     password: str
