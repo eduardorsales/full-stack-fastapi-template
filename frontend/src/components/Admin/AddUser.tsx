@@ -65,7 +65,7 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Algo deu errado.", `${errDetail}`, "error")
     },
     onSettled: () => {
       queryClient.invalidateQueries("users")
@@ -137,11 +137,7 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, onClose }) => {
                 <FormErrorMessage>{errors.password.message}</FormErrorMessage>
               )}
             </FormControl>
-            <FormControl
-              mt={4}
-              isRequired
-              isInvalid={!!errors.confirm_password}
-            >
+            <FormControl mt={4} isRequired isInvalid={!!errors.confirm_password}>
               <FormLabel htmlFor="confirm_password">Confirme a senha</FormLabel>
               <Input
                 id="confirm_password"

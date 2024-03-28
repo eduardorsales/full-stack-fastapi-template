@@ -36,6 +36,7 @@ export const Route = createFileRoute("/login")({
 })
 
 function Login() {
+  
   const [show, setShow] = useBoolean()
   const { login } = useAuth()
   const [error, setError] = React.useState<string | null>(null)
@@ -114,6 +115,9 @@ function Login() {
           {error && <FormErrorMessage>{error}</FormErrorMessage>}
         </FormControl>
         <Center>
+          <Link as={RouterLink} to="/register" color="blue.500">
+            Cadastre-se
+          </Link>
           <Link as={RouterLink} to="/recover-password" color="blue.500">
             Esqueci a senha
           </Link>
