@@ -1,15 +1,15 @@
 import { Box, Flex, Icon, Text, useColorModeValue } from "@chakra-ui/react"
 import { Link } from "@tanstack/react-router"
 import type React from "react"
-import { FiBriefcase, FiHome, FiSettings, FiUsers } from "react-icons/fi"
+import { FiTarget, FiHome, FiSettings, FiUsers } from "react-icons/fi"
 import { useQueryClient } from "react-query"
 
 import type { UserOut } from "../../client"
 
 const items = [
   { icon: FiHome, title: "Dashboard", path: "/" },
-  { icon: FiBriefcase, title: "Itens", path: "/items" },
-  { icon: FiSettings, title: "Configurações", path: "/settings" },
+  { icon: FiTarget, title: "Objetivos", path: "/goals" },  
+  { icon: FiSettings, title: "Configurações", path: "/settings" },  
 ]
 
 interface SidebarItemsProps {

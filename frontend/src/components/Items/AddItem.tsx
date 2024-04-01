@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   FormErrorMessage,
@@ -11,7 +12,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Textarea,
 } from "@chakra-ui/react"
+
 import type React from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "react-query"
@@ -47,13 +50,13 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
 
   const mutation = useMutation(addItem, {
     onSuccess: () => {
-      showToast("Success!", "Item created successfully.", "success")
+      showToast("Sucesso!", "Objetivo criado com suceso.", "success")
       reset()
       onClose()
     },
     onError: (err: ApiError) => {
       const errDetail = err.body?.detail
-      showToast("Something went wrong.", `${errDetail}`, "error")
+      showToast("Algo deu errado.", `${errDetail}`, "error")
     },
     onSettled: () => {
       queryClient.invalidateQueries("items")
@@ -74,17 +77,17 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
       >
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader>Add Item</ModalHeader>
+          <ModalHeader>Adicione seu objetivo</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isRequired isInvalid={!!errors.title}>
-              <FormLabel htmlFor="title">Title</FormLabel>
+              <FormLabel htmlFor="title">Objetivo</FormLabel>
               <Input
                 id="title"
                 {...register("title", {
-                  required: "Title is required.",
+                  required: "Objetivo é obrigatório.",
                 })}
-                placeholder="Title"
+                placeholder="Digite o objetivo"
                 type="text"
               />
               {errors.title && (
@@ -92,21 +95,24 @@ const AddItem: React.FC<AddItemProps> = ({ isOpen, onClose }) => {
               )}
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel htmlFor="description">Description</FormLabel>
-              <Input
-                id="description"
-                {...register("description")}
-                placeholder="Description"
-                type="text"
-              />
+              <FormLabel htmlFor="description">Descrição</FormLabel>
+              <Box width="100%" >
+                <Textarea
+                  size="lg"
+                  id="description"
+                  {...register("description")}
+                  placeholder="Digite a descrição"                                
+                />
+              </Box>
             </FormControl>
+
           </ModalBody>
 
           <ModalFooter gap={3}>
             <Button variant="primary" type="submit" isLoading={isSubmitting}>
-              Save
+              Salvar
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cancelar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
